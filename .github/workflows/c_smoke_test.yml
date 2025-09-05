@@ -1,0 +1,23 @@
+name: C Smoke Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - name: Build and Test
+      run: |
+        mkdir bin
+        make test RUN_STDOUT=/dev/stdout
+
+
