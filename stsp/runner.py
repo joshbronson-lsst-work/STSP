@@ -89,10 +89,10 @@ class ActionRunner:
         in_path = work / f"{self.input_basename()}.in"
         in_path.write_text(common + action)
 
-        # Run stsp (assumes 'stsp' is available on PATH)
+        # Run stsp (assumes 'stsp_bin' is available on PATH)
         try:
             subprocess.run(
-                ["stsp", in_path.name],
+                ["stsp_bin", in_path.name],
                 cwd=str(work),
                 check=True,
                 capture_output=True,
