@@ -1,3 +1,5 @@
 *~
 __pycache__
 bin/
+src/stsp.o
+build/

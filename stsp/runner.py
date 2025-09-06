@@ -5,7 +5,7 @@ from typing import List, Optional, Sequence, Tuple
 
 import numpy as np
 
-from stsp.stsp import Action, ActionL, ActionM
+from .actions import Action, ActionL, ActionM
 
 
 class ActionRunner:

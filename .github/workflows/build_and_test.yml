@@ -1,0 +1,44 @@
+name: Build And Test
+
+on:
+  push:
+  pull_request:
+
+env:
+  UV_VERSION: 0.8.6
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version:
+          - "3.11"
+          - "3.12"
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: ${{ env.UV_VERSION }}
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install the project
+      run: uv sync --locked --dev --no-cache
+
+    - name: PyTest
+      run: uv run pytest
+
+    - name: Run Ctype STSP
+      if: always()
+      run: PYTHONFAULTHANDLER=1 uv run stsp_ctype sample-l.in
+      working-directory: ./sample
+
+    - name: Run Subprocess STSP
+      if: always()
+      run: PYTHONFAULTHANDLER=1 uv run stsp_bin sample-l.in
+      working-directory: ./sample

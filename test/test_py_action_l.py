@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from stsp.runner import ActionLRunner
-from stsp.stsp import ActionL, FittingProperties, PlanetProperties, StarProperties, SpotProperties
+from stsp.actions import ActionL, FittingProperties, PlanetProperties, StarProperties, SpotProperties
 
 
 

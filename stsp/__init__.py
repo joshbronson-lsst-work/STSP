@@ -1,4 +1,4 @@
-from .stsp import (
+from .actions import (
     PlanetProperties,
     StarProperties,
     SpotProperties,
@@ -7,3 +7,9 @@ from .stsp import (
     ActionL,
     ActionM,
 )
+
+from .example_access import(
+    main_ctype,
+    main_bin,
+)
+

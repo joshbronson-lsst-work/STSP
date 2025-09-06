@@ -1,0 +1,33 @@
+[project]
+name = "stsp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "destrys", email = "destrys@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.2.6",
+]
+
+[project.scripts]
+stsp_ctype = "stsp:main_ctype"
+stsp_bin = "stsp:main_bin"
+
+[tool.scikit-build]
+minimum-version = "build-system.requires"
+build-dir = "build/{wheel_tag}"
+sdist.include = ["sample/model_lc.dat"]
+
+[tool.scikit-build.wheel.packages]
+stsp = "stsp"
+
+[build-system]
+requires = ["scikit-build-core>=0.10"]
+build-backend = "scikit_build_core.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+]
