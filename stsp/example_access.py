@@ -6,17 +6,6 @@ import sys
 import sysconfig
 
 
-def main_ctype():
-    site_packages_path = sysconfig.get_paths()["purelib"]
-    pattern = os.path.join(site_packages_path, "stsp", "stsp.*.so")
-    library_path = glob.glob(pattern)[0]
-    c_stsp = ctypes.CDLL(library_path)
-
-    current_dir = os.getcwd()
-    config_path = os.path.join(current_dir, sys.argv[1])
-
-    c_stsp.main(2, config_path)
-    
 def main_bin():
     site_packages_path = sysconfig.get_paths()["purelib"]
     bin_path = os.path.join(site_packages_path, "stsp", "stsp_executable")

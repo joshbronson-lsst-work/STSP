@@ -9,7 +9,6 @@ from .actions import (
 )
 
 from .example_access import(
-    main_ctype,
     main_bin,
 )
 

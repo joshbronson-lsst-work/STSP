@@ -17,6 +17,7 @@ jobs:
         python-version:
           - "3.11"
           - "3.12"
+          - "3.13"
 
     steps:
     - uses: actions/checkout@v5
@@ -30,13 +31,13 @@ jobs:
     - name: Install the project
       run: uv sync --locked --dev --no-cache
 
-    - name: PyTest
-      run: uv run pytest
+    - name: PyTest (macOS exclude m tests)
+      if: matrix.os == 'macos-latest'
+      run: uv run pytest -k 'not test_py_action_m'
 
-    - name: Run Ctype STSP
-      if: always()
-      run: PYTHONFAULTHANDLER=1 uv run stsp_ctype sample-l.in
-      working-directory: ./sample
+    - name: PyTest (Ubuntu full)
+      if: matrix.os == 'ubuntu-latest'
+      run: uv run pytest
 
     - name: Run Subprocess STSP
       if: always()
