@@ -1,6 +1,11 @@
 STSP
 ====
+
 In and out of transit starspot modeling code
+
+V5.1.0  2025-09
+
+Added Python API. See [python_api.md](python_api.md) for details.
 
 V5.0.1  2022-04
 
